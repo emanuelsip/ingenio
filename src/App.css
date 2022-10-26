@@ -37,6 +37,8 @@
   }
 }
 
+
+
 thead button {
   border: 0;
   border-radius: none;
@@ -45,7 +47,56 @@ thead button {
   font-size: inherit;
   padding: 0.5em;
   margin-bottom: 1px;
+  background-image: url('data:image/svg+xml,<svg  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  xmlns="http://www.w3.org/2000/svg">  <path    d="M9.1716 6.45504L7.75739 5.04083L12 0.798187L16.2426 5.04083L14.8284 6.45504L13.0001 4.62667V19.3733L14.8284 17.5449L16.2426 18.9592L12 23.2018L7.75739 18.9592L9.1716 17.5449L11.0001 19.3734V4.62658L9.1716 6.45504Z"    fill="currentColor"  /></svg>');
+  background-size:100%;
 }
+
+thead button.descending{
+  background-image: url('data:image/svg+xml,<svg   width="24"   height="24"   viewBox="0 0 24 24"   fill="none"   xmlns="http://www.w3.org/2000/svg" >   <path     d="M17.6568 8.96219L16.2393 10.3731L12.9843 7.10285L12.9706 20.7079L10.9706 20.7059L10.9843 7.13806L7.75404 10.3532L6.34314 8.93572L12.0132 3.29211L17.6568 8.96219Z"     fill="currentColor"/></svg>');
+  background-size:100%;
+}
+
+
+thead button.ascending {
+  background-image: url('data:image/svg+xml,<svg   width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  xmlns="http://www.w3.org/2000/svg">  <path    d="M11.0001 3.67157L13.0001 3.67157L13.0001 16.4999L16.2426 13.2574L17.6568 14.6716L12 20.3284L6.34314 14.6716L7.75735 13.2574L11.0001 16.5001L11.0001 3.67157Z"    fill="currentColor"  /></svg>');
+  background-size:100%;
+}
+/* thead button {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 10px;
+  height: 20px;
+  background:
+   linear-gradient(
+       to left,
+       currentColor 16px,transparent 0)
+       no-repeat 4px 2px/2px 16px
+}
+thead button::after,
+thead button::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  transform: rotate(-45deg);
+  left: 2px
+}
+thead button::after {
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  bottom: 1px
+}
+thead button::before {
+  border-top: 2px solid;
+  border-right: 2px solid;
+  top: 1px
+}
+
+
 
 
 thead button.ascending {
@@ -112,5 +163,7 @@ thead button.descending::before {
   height: 16px;
   left: 10px;
   background: currentColor
-}
+} */
+
+
 
