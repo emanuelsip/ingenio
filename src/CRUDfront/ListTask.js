@@ -4,6 +4,8 @@ import RowsTasks from "./RowsTasks";
 import { useParams } from 'react-router-dom';
 import url from './url'
 import formatDate from './FormatDate'
+import Swal from 'sweetalert2'
+
 
 
 const useSortableData = (items, config = null) => {
@@ -71,18 +73,44 @@ function ListTask(){
       return sortConfig.key === name ? sortConfig.direction : undefined;
     };
     
+
+    
+
     const deleteTask = (number,idTask)=>{
+      // MySwal.fire({
+      //   // title: <p>Hello World</p>,
+      //   text: 'Are you sure to delete?',
+      //   icon: 'warning',
+      // }).then(() => {
+        
+      // })
       // console.log();
-       axios.delete(url+'/api/task/destroy/'+idTask).then(res=>{
-          let copyTask = [...tasks]
-          copyTask = copyTask.filter(
-            (item,index) => 
-              number !=index
-          )
-          setTasks(copyTask)
-       }).catch(err=>{
-         console.log('Error al borrar el usuario',err);
-       })
+
+
+        Swal.fire({
+          title: 'Warning!',
+          text: 'Are you sure to delete?',
+          icon: 'warning',
+          showDenyButton: true,
+       }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(url+'/api/task/destroy/'+idTask).then(res=>{
+              let copyTask = [...tasks]
+              copyTask = copyTask.filter(
+                (item,index) => 
+                  number !=index
+              )
+              setTasks(copyTask)
+              Swal.fire('Deleted!', '', 'success')
+            }).catch(err=>{
+              console.log('Error al borrar el usuario',err);
+            })
+          
+        } else if (result.isDenied) {
+          
+        }
+      })
+      
       
       
     }
@@ -100,7 +128,30 @@ function ListTask(){
       
     })
     return ( 
+      
         <div className="container-fluid">
+          <template id="my-template">
+                <swal-title>
+                  Save changes to "Untitled 1" before closing?
+                </swal-title>
+                <swal-icon type="warning" color="red"></swal-icon>
+                <swal-button type="confirm">
+                  Save As
+                </swal-button>
+                <swal-button type="cancel">
+                  Cancel
+                </swal-button>
+                <swal-button type="deny">
+                  Close without Saving
+                </swal-button>
+                <swal-param name="allowEscapeKey" value="false" />
+                <swal-param
+                  name="customClass"
+                  value='{ "popup": "my-popup" }' />
+                <swal-function-param
+                  name="didOpen"
+                  value="popup => console.log(popup)" />
+              </template>
           <div className="row">
             <div className="col-12">
               <div className="card">

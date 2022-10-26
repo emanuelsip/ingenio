@@ -2,15 +2,12 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { v4 as uuid } from 'uuid';
 import url from './url'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import Swal from 'sweetalert2'
 
 function CreateTask(){
   const[nametask, setNametask] = useState('');
   const[dateovertask, setDateovertask] = useState('');
   const[priortask, setPriortask] = useState('');
-   const notify = () => toast;
 
    function create(){
        let task = {
@@ -22,16 +19,30 @@ function CreateTask(){
 
        axios.post(url+'/api/task/create',task)
        .then(res=>{
+           Swal.fire({
+             position: 'top-end',
+             icon: 'success',
+             title: 'Saved!',
+             showConfirmButton: false,
+             timer: 1500
+           })
          console.log(res.data);
        }).catch(err =>{ 
-        notify.success("Wow so easy!")
-         console.log('Hubo un error',err);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          html:err.config.data,
+          title: "Can't create",
+          showConfirmButton: false,
+          timer: 2000
+        })
+        // notify.success("Wow so easy!")
+         console.log('Hubo un error',err.config.data);
        });
     }
 
     return ( 
         <div>
-              <ToastContainer />
          
                 <div className="card">
                   <div className="card-body">

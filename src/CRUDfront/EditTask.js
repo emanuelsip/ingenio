@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import formatDate from './FormatDate'
 import url from './url'
+import Swal from 'sweetalert2'
 
 function EditTask(){
   const params = useParams()
@@ -13,12 +14,15 @@ function EditTask(){
     useEffect(()=>{
       axios.post(url+'/api/task/edit',{id:params.id})
       .then(res=>{
+        
         let taskG = res.data[0]
         setNametask(taskG.nameTask);
-        setDateovertask(formatDate(taskG.dateTask));
+        setDateovertask(formatDate(taskG.dateTask,false));
         setPriortask(taskG.priorityTask);
+        
       })
       .catch(err=>{
+        
         console.log('Error al obtener el usuario',err)
       })
     },[])
@@ -33,9 +37,23 @@ function EditTask(){
       }
       axios.put(url+'/api/task/update',task)
       .then(res=>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Saved!',
+          showConfirmButton: false,
+          timer: 1500
+        })
         console.log(res.data)
       }).catch(err =>{
-        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          html:err.config.data,
+          title: "Can't create",
+          showConfirmButton: false,
+          timer: 2000
+        })
         console.log('Hubo un error',err)
       });
     }
