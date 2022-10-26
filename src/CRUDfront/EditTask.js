@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
-import { v4 as uuid } from 'uuid';
 import { useParams } from 'react-router-dom';
 
 function EditTask(){
@@ -10,7 +9,7 @@ function EditTask(){
   const[priortask, setPriortask] = useState('')
 
     useEffect(()=>{
-      axios.post('/api/task/edit',{id:params.id})
+      axios.post('https://backendingenio.herokuapp.com/api/task/edit',{id:params.id})
       .then(res=>{
         let taskG = res.data[0]
         setNametask(taskG.nameTask);
@@ -43,7 +42,7 @@ function EditTask(){
         priorityTask : priortask,
         idTask:params.id
       }
-      axios.put('/api/task/update',task)
+      axios.put('https://backendingenio.herokuapp.com/api/task/update',task)
       .then(res=>{
         console.log(res.data)
       }).catch(err =>{

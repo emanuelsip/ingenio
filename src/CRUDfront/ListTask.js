@@ -8,7 +8,7 @@ function ListTask(){
     const [tasks,setTasks] = useState([]);
     useEffect(()=>{
       
-      axios.get('api/task'+(params.duet?'/duet':'')).then(res=>{
+      axios.get('https://backendingenio.herokuapp.com/api/task'+(params.duet?'/duet':'')).then(res=>{
         setTasks(res.data)
       }).catch(err=>{
         console.log('Error al crear el usuario',err);
@@ -18,7 +18,7 @@ function ListTask(){
     
     const deleteTask = (number,idTask)=>{
       // console.log();
-       axios.delete('/api/task/destroy/'+idTask).then(res=>{
+       axios.delete('https://backendingenio.herokuapp.com/api/task/destroy/'+idTask).then(res=>{
           let copyTask = [...tasks]
           copyTask = copyTask.filter(
             (item,index) => 

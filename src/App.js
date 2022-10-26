@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import ListTask from './CRUDfront/ListTask'
 import CreateTask from './CRUDfront/CreateTask'

@@ -15,7 +15,7 @@ function CreateTask(){
         priorityTask : priortask,
         idTask:uuid()
       }
-      axios.post('/api/task/create',task)
+      axios.post('https://backendingenio.herokuapp.com/api/task/create',task)
       .then(res=>{
         console.log(res.data);
       }).catch(err =>{
