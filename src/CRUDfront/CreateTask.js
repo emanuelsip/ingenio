@@ -1,31 +1,43 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { v4 as uuid } from 'uuid';
+import url from './url'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function CreateTask(){
   const[nametask, setNametask] = useState('');
   const[dateovertask, setDateovertask] = useState('');
   const[priortask, setPriortask] = useState('');
-
-
+  // const id = toast.loading("Please wait...")
+   const notify = () => toast;
+  // toggleShowA()
     function create(){
-      let task = {
-        nameTask : nametask,
-        dateTask : dateovertask,
-        priorityTask : priortask,
-        idTask:uuid()
-      }
-      axios.post('https://backendingenio.herokuapp.com/api/task/create',task)
-      .then(res=>{
-        console.log(res.data);
-      }).catch(err =>{
-        console.log('Hubo un error',err);
-      });
+       let task = {
+         nameTask : nametask,
+         dateTask : dateovertask,
+         priorityTask : priortask,
+         idTask:uuid()
+       }
+      //  toast.success("Success!");
+       axios.post(url+'/api/task/create',task)
+       .then(res=>{
+         console.log(res.data);
+       }).catch(err =>{ 
+        // const notify = () => toast('Hubo un error',err);
+        // notify()
+        // toast.update(id, {render: "Something went wrong", type: "error", isLoading: false });
+        notify.success("Wow so easy!")
+         console.log('Hubo un error',err);
+       });
     }
 
     return ( 
         <div>
-          
+           {/* <button onClick={notify}>Notify!</button> */}
+              <ToastContainer />
+         
                 <div className="card">
                   <div className="card-body">
                     

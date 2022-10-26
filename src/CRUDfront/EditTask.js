@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
+import formatDate from './FormatDate'
+import url from './url'
 
 function EditTask(){
   const params = useParams()
@@ -9,7 +11,7 @@ function EditTask(){
   const[priortask, setPriortask] = useState('')
 
     useEffect(()=>{
-      axios.post('https://backendingenio.herokuapp.com/api/task/edit',{id:params.id})
+      axios.post(url+'/api/task/edit',{id:params.id})
       .then(res=>{
         let taskG = res.data[0]
         setNametask(taskG.nameTask);
@@ -21,20 +23,7 @@ function EditTask(){
       })
     },[])
 
-    function formatDate(dateIn){
-      let date = new Date(dateIn)
-      let year = date.getFullYear()
-      let month = date.getMonth()+1
-      let dd = date.getDate()
-
-      if (dd < 10) {
-        dd = '0' + dd
-      }
-      if (month < 10) {
-        month = '0' + month
-      }
-      return year +'-' +month+ '-'+ dd
-    }
+    
     function editTask(){
       let task = {
         nameTask : nametask,
@@ -42,7 +31,7 @@ function EditTask(){
         priorityTask : priortask,
         idTask:params.id
       }
-      axios.put('https://backendingenio.herokuapp.com/api/task/update',task)
+      axios.put(url+'/api/task/update',task)
       .then(res=>{
         console.log(res.data)
       }).catch(err =>{

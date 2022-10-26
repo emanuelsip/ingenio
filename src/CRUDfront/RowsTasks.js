@@ -1,21 +1,21 @@
 import React from "react";
 import {Link} from "react-router-dom" 
-
+import formatDate from './FormatDate'
 function RowsTasks(props){
-    const {task,deleteTask,index} = props
+    const {task,deleteTask,index,counter} = props
     return(
         <tr>
+            <td>
+                {counter}
+            </td>
             <td>
                 {task.nameTask}
             </td>
             <td>
-                {task.dateTask}
+                {formatDate(task.dateTask,true)}
             </td>
             <td>
                 {task.priorityTask}
-            </td>
-            <td>
-                {task.statusTask}
             </td>
             <td>
                 <Link to={`/update/${task._id}`}>

@@ -18,8 +18,10 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link  href="/">View tasks</Nav.Link>
+              <Nav.Link  href="/">Pending tasks</Nav.Link>
+              <Nav.Link  href="/duet" >Overdue tasks</Nav.Link>
               <Nav.Link  href="create" >New task</Nav.Link>
+              
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -28,7 +30,7 @@ function App() {
       <BrowserRouter >
         <Routes>
         <Route path="/" element={<ListTask/>}></Route>
-          <Route path="/duet" element={<ListTask duet={true}/>}></Route>
+          <Route path="/:duet" element={<ListTask />}></Route>
           <Route path="/create" element={<CreateTask/>}></Route>
           <Route path="/update/:id" element={<EditTask/>}></Route>
         </Routes>
